@@ -5,6 +5,11 @@ settings={
     "logLocation":"log", # Where to save the log file
 
     "databaseName":"database", # What is the name you want the database to have and where it should be? No .json at the end please.
-    "uniqueFields":["username"] # Define what fields will be unique in the database
+    "uniqueFields":["username"], # Define what fields will be unique in the database
+    "secureFields":["password"] # Define what fields need to be encrypted
 }
 
+# Returns:
+
+# -1 = Database file iteration or opening/writing to failed
+# -2 = Unique constraint failed

@@ -18,17 +18,30 @@ def ConnectDB(tables=[]):
                 f.write(json.dumps(db,indent=4))
                 logger.Log("Database created",3)
     except:
-        return "fail"
+        return -1
 
 def InsertObjectIntoDB(obj,table):
     # Inserts an object to a database
-    # Add an option for unique field check
     try:
         with open(settings["databaseName"]+".json","r") as f:
             db = json.loads(f.read())
 
     except:
         logger.Log("Could not open database...",3,"fail")
+        return -1
+
+    # Check for unique fields
+
+    for uniqueField in settings["uniqueFields"]:
+        for i,entry in enumerate(db[table]):
+            try:
+                if obj[uniqueField] in db[table][i][uniqueField]:
+                    logger.Log("Unique constraint failed -> "+uniqueField + " -> "+obj[uniqueField],1,"warning")
+                    return -2
+                else:
+                    continue
+            except:
+                pass
     # Add the obj
     prevID=db[table][-1]["ID"]
     obj["ID"] = prevID+1
@@ -44,6 +57,7 @@ def GetObjectFromDB(table,variable,param):
 
     except:
         logger.Log("Could not open database...",3,"fail")
+        return -1
 
     try:
         for obj in db[table]:
@@ -51,12 +65,32 @@ def GetObjectFromDB(table,variable,param):
                 return obj
     except:
         logger.Log("Could not loop through the table requested...",3,"fail")
+        return -1
     
     return None
 
 def AlterObjectFromDB(table,searchVariable,searchParam,newParam):
-    pass
+    try:
+        with open(settings["databaseName"]+".json","r") as f:
+            db = json.loads(f.read())
+
+    except:
+        logger.Log("Could not open database...",3,"fail")
+        return -1
+
+    for i,obj in enumerate(db[table]):
+        try:
+            if obj[searchVariable] == searchParam:
+                db[table][i][searchVariable] = newParam
+        except:
+            pass
+    with open(settings["databaseName"]+".json","w") as f:
+        f.write(json.dumps(db,indent=4))
+
+    
 
 ConnectDB(["users","cars"])
+# ^^ Done once.
 InsertObjectIntoDB({"username":"mazdaKing","password":"test"},"users")
-print(GetObjectFromDB("users","ID",0))
+#AlterObjectFromDB("users","username","mazdaKing","mazaSwing")
+#GetObjectFromDB("users","ID",0)

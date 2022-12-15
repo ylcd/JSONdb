@@ -42,6 +42,10 @@ ConnectDB(["users","cars"])
 ```Python
 InsertObjectIntoDB(({"username":"mazdaKing","password":"test"},"users"))
 ```
+### Altering an objects variable from the database
+```Python
+AlterObjectFromDB("users","username","mazdaKing","mazaSwing")
+```
 ### Retrieving an object from the database
 ```Python
 GetObjectFromDB("users","ID",1)
