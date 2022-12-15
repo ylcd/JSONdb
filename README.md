@@ -19,7 +19,10 @@ That is when I created "JSONdb". It is a Python3 wrapper around JSON that can be
 - Foreign keys not even needed in most cases
 - Easy logging already imbedded
 - Easy to configure settings written in a hashmap
+- Automatic ID tracking and implementation
 - Use of color for understanding if a function completed it's task successfully
+- Easy unique fields
+- Built in date expiry check
 
 ## Setup
 
@@ -32,6 +35,12 @@ Here are the necessary steps you need to take in order to use JSONdb:
 ## Usage example
 
 ```Python
+# First we need to create a database connection:
+
+ConnectDB(["users","cars"])
+# We specify the tables we will have in our database.
+# If the database file exists and is not empty we just create a connection.
+# If the database does not exists or is empty we populate it with tables and start IDs
 
 
 
