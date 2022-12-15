@@ -40,7 +40,7 @@ ConnectDB(["users","cars"])
 ```
 ### Inserting an object into the database
 ```Python
-InsertObjectIntoDB(({"username":"mazdaKing","password":"test"},"users"))
+InsertObjectIntoDB({"username":"mazdaKing","password":"test"},"users")
 ```
 ### Altering an objects variable from the database
 ```Python
