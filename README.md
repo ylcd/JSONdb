@@ -34,14 +34,15 @@ Here are the necessary steps you need to take in order to use JSONdb:
 
 ## Usage example
 
+### Creating a database connection
 ```Python
-# First we need to create a database connection:
-
 ConnectDB(["users","cars"])
-# We specify the tables we will have in our database.
-# If the database file exists and is not empty we just create a connection.
-# If the database does not exists or is empty we populate it with tables and start IDs
-
-
-
+```
+### Inserting an object into the database
+```Python
+InsertObjectIntoDB(({"username":"mazdaKing","password":"test"},"users"))
+```
+### Retrieving an object from the database
+```Python
+GetObjectFromDB("users","ID",1)
 ```

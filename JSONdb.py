@@ -14,7 +14,7 @@ def ConnectDB(tables=[]):
                 # If there are tables specified:
                 db = {}
                 for table in tables:
-                    db[table] = [{"ID":0}]
+                    db[table] = [{"ID":-1}]
                 f.write(json.dumps(db,indent=4))
                 logger.Log("Database created",3)
     except:
@@ -28,17 +28,35 @@ def InsertObjectIntoDB(obj,table):
             db = json.loads(f.read())
 
     except:
-        return "fail"
+        logger.Log("Could not open database...",3,"fail")
     # Add the obj
     prevID=db[table][-1]["ID"]
-    #obj["ID"] = prevID + 1
     obj["ID"] = prevID+1
     db[table].append(obj)
     
-    print(db)
     with open(settings["databaseName"]+".json","w") as f:
         f.write(json.dumps(db,indent=4))
 
+def GetObjectFromDB(table,variable,param):
+    try:
+        with open(settings["databaseName"]+".json","r") as f:
+            db = json.loads(f.read())
+
+    except:
+        logger.Log("Could not open database...",3,"fail")
+
+    try:
+        for obj in db[table]:
+            if obj[variable] == param:
+                return obj
+    except:
+        logger.Log("Could not loop through the table requested...",3,"fail")
+    
+    return None
+
+def AlterObjectFromDB(table,searchVariable,searchParam,newParam):
+    pass
+
 ConnectDB(["users","cars"])
-InsertObjectIntoDB({"make":"mazda","year":1992},"cars")
-#logger.Log("Inserting into db",1,InsertObjectIntoDB({"kaka":"paka"}))
+InsertObjectIntoDB({"username":"mazdaKing","password":"test"},"users")
+print(GetObjectFromDB("users","ID",0))

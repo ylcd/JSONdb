@@ -1,17 +1,17 @@
 {
     "users": [
         {
+            "ID": -1
+        },
+        {
+            "username": "mazdaKing",
+            "password": "test",
             "ID": 0
         }
     ],
     "cars": [
         {
-            "ID": 0
-        },
-        {
-            "make": "mazda",
-            "year": 1992,
-            "ID": 1
+            "ID": -1
         }
     ]
 }
