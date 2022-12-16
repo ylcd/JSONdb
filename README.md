@@ -4,7 +4,9 @@
 
 JSONdb is a project I made to make it easier for myself to use databases. I always hated SQL as it seemed way too complex to use for simpler stuff.
 
-That is when I created "JSONdb". It is a Python3 wrapper around JSON that can be used like a database solution. It even has automatic encryption for chosen fields. You can of course choose which encryption algorithms you would like or implement your own easily.
+That is when I created "JSONdb". It is a Python3 wrapper around JSON that can be used like a database solution. 
+
+**Check out the example project in this repo so you can understand how to use JSONdb to it's fullest potential.**
 
 ## Features
 
