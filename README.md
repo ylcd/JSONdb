@@ -8,11 +8,11 @@ That is when I created "JSONdb". It is a Python3 wrapper around JSON that can be
 
 ## Features
 
+- No external dependencies
 - Easy insertion of data
 - Easy addition of new variables to the whole database
 - Easy search for data
 - Easy deletion of data
-- Easy auto back-up feature
 - Easy unique fields
 - Easy logging already imbedded
 - Easy to configure settings written in a Python3 dictionary object
@@ -22,8 +22,6 @@ That is when I created "JSONdb". It is a Python3 wrapper around JSON that can be
 - Automatic ID tracking and implementation
 - Automatic ID cleanup
 - Use of color for understanding if a function completed it's task successfully
-- Built in date expiry check
-- Built in special character check?
 
 ## Setup
 
