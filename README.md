@@ -9,20 +9,21 @@ That is when I created "JSONdb". It is a Python3 wrapper around JSON that can be
 ## Features
 
 - Easy insertion of data
-- Easy deletion of data
-- Easy search for data
-- Easy foreign key implementation
 - Easy addition of new variables to the whole database
+- Easy search for data
+- Easy deletion of data
 - Easy auto back-up feature
-- Automatic protection procedures like password encryption
-- Uses Python syntax instead of SQL
-- Foreign keys not even needed in most cases
-- Easy logging already imbedded
-- Easy to configure settings written in a hashmap
-- Automatic ID tracking and implementation
-- Use of color for understanding if a function completed it's task successfully
 - Easy unique fields
+- Easy logging already imbedded
+- Easy to configure settings written in a Python3 dictionary object
+- Automatic hashing of fields you choose
+- Uses Python syntax instead of SQL
+- Foreign keys not needed in 90% of cases
+- Automatic ID tracking and implementation
+- Automatic ID cleanup
+- Use of color for understanding if a function completed it's task successfully
 - Built in date expiry check
+- Built in special character check?
 
 ## Setup
 
@@ -40,13 +41,17 @@ ConnectDB(["users","cars"])
 ```
 ### Inserting an object into the database
 ```Python
-InsertObjectIntoDB({"username":"mazdaKing","password":"test"},"users")
+InsertObjectIntoDB({"username":"ylcd","password":"test123"},"users")
 ```
 ### Altering an objects variable from the database
 ```Python
-AlterObjectFromDB("users","username","mazdaKing","mazaSwing")
+AlterObjectFromDB("users","username","ylcd","yourlocalcodedealer")
 ```
 ### Retrieving an object from the database
 ```Python
 GetObjectFromDB("users","ID",1)
+```
+### Deleting an object from the database
+```Python
+DeleteObjectFromDB("users","username","yourlocalcodedealer")
 ```

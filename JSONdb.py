@@ -1,6 +1,7 @@
 from modules import logger
 from modules.settings import settings
 
+import hashlib
 import json
 
 def ConnectDB(tables=[]):
@@ -42,6 +43,12 @@ def InsertObjectIntoDB(obj,table):
                     continue
             except:
                 pass
+
+    for secureField in settings["secureFields"]:
+        if secureField in obj.keys():
+            obj[secureField] = hashlib.sha256(obj[secureField].encode("utf-8")).hexdigest()
+
+
     # Add the obj
     prevID=db[table][-1]["ID"]
     obj["ID"] = prevID+1
@@ -87,10 +94,29 @@ def AlterObjectFromDB(table,searchVariable,searchParam,newParam):
     with open(settings["databaseName"]+".json","w") as f:
         f.write(json.dumps(db,indent=4))
 
+def DeleteObjectFromDB(table,seachVariable,searchParam):
+    try:
+        with open(settings["databaseName"]+".json","r") as f:
+            db = json.loads(f.read())
+
+    except:
+        logger.Log("Could not open database...",3,"fail")
+        return -1
     
+    for i,obj in enumerate(db[table]):
+        try:
+            if db[table][i][seachVariable] == searchParam:
+                del db[table][i]
+                logger.Log("Deleted object succesfully",3)
+        except:
+            pass
+    with open(settings["databaseName"]+".json","w") as f:
+        f.write(json.dumps(db,indent=4))
+        
 
 ConnectDB(["users","cars"])
 # ^^ Done once.
 InsertObjectIntoDB({"username":"mazdaKing","password":"test"},"users")
 #AlterObjectFromDB("users","username","mazdaKing","mazaSwing")
 #GetObjectFromDB("users","ID",0)
+DeleteObjectFromDB("users","username","kakavac")
