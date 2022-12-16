@@ -32,7 +32,8 @@ Here are the necessary steps you need to take in order to use JSONdb:
 - Download this repo ( will be adding code to PyPi soon )
 - Extract in your projects directory, remove the example project files and folder
 - Set up your settings.py file to your liking
-- import the modules and it's ready for use.
+- import JSONdb
+- Ready to use
 
 ## Usage example
 
